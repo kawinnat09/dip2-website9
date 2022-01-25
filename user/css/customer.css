@@ -1,0 +1,22 @@
+.navbar{
+    font-family: 'Sarabun', sans-serif;
+}
+
+h1,h3,h4,p{
+    font-family: 'Sarabun', sans-serif;
+}
+
+.navbar-brand,nav-link{
+    font-family: 'Sarabun', sans-serif;
+}
+
+.underline{
+    width: 120px;
+    height: 4px;
+    background-color: #1A374D;
+}
+
+form{
+    font-family: 'Sarabun', sans-serif;
+}
+
