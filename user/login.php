@@ -39,7 +39,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <button type="submit" name="login_btn" class="btn btn-primary">Login Now</button>
+                            <button type="submit" name="login_btn" class="btn btn-success">Login Now</button>
                         </div>
 
                     </form>

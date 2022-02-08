@@ -16,7 +16,7 @@
 
             <div class="card shadow">
 
-                <div class="card-header text-center bg-primary text-white">
+                <div class="card-header text-center bg-success text-white">
                     <h4>ระบบลงทะเบียน</h4>
                 </div>
 
@@ -48,7 +48,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <button type="submit" name="register_btn" class="btn btn-primary">ลงทะเบียน</button>
+                            <button type="submit" name="register_btn" class="btn btn-success">ลงทะเบียน</button>
                         </div>
 
                     </form>

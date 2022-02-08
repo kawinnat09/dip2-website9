@@ -15,7 +15,7 @@
             <div class="card-header ">
                 <h6 class="card-title font-weight-bold text-primary">ข่าวประชาสัมพันธ์ 1 &nbsp;
                     <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addAdminNews">
+                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addAdminNews">
                         เพิ่ม ข่าวประชาสัมพันธ์
                     </button>
                 </h6>
@@ -23,58 +23,105 @@
 
             <div class="card-body">
                 <?php
-                    if(isset($_SESSION['success']) && ($_SESSION['success'] != '')){
-                        echo $_SESSION['success'];
-                        unset($_SESSION['success']);
-                    }
+                if (isset($_SESSION['success']) && $_SESSION['success'] != '') {
+                    echo $_SESSION['success'];
+                    unset($_SESSION['success']);
+                }
                 ?>
+
                 <div class="table-responsive">
-                 <?php
-                        $query = "SELECT * FROM hotnews";
-                        $res = mysqli_query($con,$query);
-                 ?>
+
+                    <?php
+                    $perpage = 4;
+                    if (isset($_GET['page']) & !empty($_GET['page'])) {
+                        $curpage = $_GET['page'];
+                    } else {
+                        $curpage = 1;
+                    }
+                    $start = ($curpage * $perpage) - $perpage;
+                    $PageSql = "SELECT * FROM  hotnews ";
+                    $pageres = mysqli_query($con, $PageSql);
+                    $totalres = mysqli_num_rows($pageres);
+
+                    $endpage = ceil($totalres / $perpage);
+                    $startpage = 1;
+                    $nextpage = $curpage + 1;
+                    $previouspage = $curpage - 1;
+
+                    $query = "SELECT * FROM hotnews ORDER by id DESC LIMIT $start, $perpage";
+                    $res = mysqli_query($con, $query);
+                    ?>
+
                     <table class="table table-bordered border-primary">
                         <thead>
                             <tr>
                                 <th scope="col">ลำดับ</th>
-                                <th scope="col">หัวข้อข่าว</th>
+                                <th scope="col">หัวข้อ</th>
                                 <th scope="col">รายละเอียด</th>
                                 <th scope="col">วันเวลา</th>
-                                <th scope="col">แก้ไขข่าว</th>
-                                <th scope="col">ลบข่าว</th>
+                                <th>แก้ไข</th>
+                                <th>ลบข่าว</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php
-                                $i = 1;
-                                while($row = mysqli_fetch_array($res)){ 
+                            $i = 1;
+                            while ($row = mysqli_fetch_array($res)) {
                             ?>
-                            <tr>
-                                <th scope="row"><?php echo $i; ?></th>
-                                <td><?php echo $row['head']; ?></td>
-                                <td><?php echo $row['detail']; ?></td>
-                                <td><?php echo $row['date']; ?></td>
-                                <td>
-                                    <form action="news_edit.php" method="post">
-                                        <input type="hidden" name="news_edit_id">
-                                        <button type="submit" name="news_editbtn" class="btn btn-success">แก้ไขข่าว</button>
-                                    </form>
-                                </td>
-                                <td>
-                                    <form action="news_code.php" method="post">
-                                        <input type="hidden" name="delete_image">
-                                        <input type="hidden" name="delete_doc">
-                                        <input type="hidden" name="delete_id">
-                                        <button type="submit" name="news_deletebtn" class="btn btn-danger">ลบข่าวสาร</button>
-                                    </form>
-                                </td>
-                            </tr>
+                                <tr>
+                                    <th scope="row"><?php echo $i; ?></th>
+                                    <td><?php echo $row['head']; ?></php>
+                                    </td>
+                                    <td><?php echo $row['detail']; ?></td>
+                                    <td><?php echo $row['date']; ?></td>
+                                    <td>
+                                        <form action="news_edit.php" method="post">
+                                            <input type="hidden" name="news_edit_id" value="<?php echo $row['id'] ?>">
+                                            <button type="submit" name="news_editbtn" class="btn btn-success">แก้ไข</button>
+                                        </form>
+                                    </td>
+                                    <td>
+                                        <form action="news_code.php" method="post">
+                                            <input type="hidden" name="delete_image" value="<?php echo $row['namepic'] ?>">
+                                            <input type="hidden" name="delete_doc" value="<?php echo $row['namedoc'] ?>">
+                                            <input type="hidden" name="delete_id" value="<?php echo $row['id'] ?>">
+                                            <button type="submit" name="news_deletebtn" class="btn btn-danger">ลบ</button>
+                                        </form>
+                                    </td>
+                                </tr>
                             <?php
-                            $i++; 
-                            } 
+                                $i++;
+                            }
                             ?>
                         </tbody>
                     </table>
+
+                    <nav aria-label="Page navigation">
+                    <ul class="pagination">
+                        <?php if ($curpage != $startpage) { ?>
+                            <li class="page-item">
+                                <a class="page-link" href="?page=<?php echo $startpage ?>" tabindex="-1" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                    <span class="sr-only">First</span>
+                                </a>
+                            </li>
+                        <?php } ?>
+                        <?php if ($curpage >= 2) { ?>
+                            <li class="page-item"><a class="page-link" href="?page=<?php echo $previouspage ?>"><?php echo $previouspage ?></a></li>
+                        <?php } ?>
+                        <li class="page-item active"><a class="page-link" href="?page=<?php echo $curpage ?>"><?php echo $curpage ?></a></li>
+                        <?php if ($curpage != $endpage) { ?>
+                            <li class="page-item"><a class="page-link" href="?page=<?php echo $nextpage ?>"><?php echo $nextpage ?></a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="?page=<?php echo $endpage ?>" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                    <span class="sr-only">Last</span>
+                                </a>
+                            </li>
+                        <?php } ?>
+                    </ul>
+                </nav>
+
                 </div>
             </div>
         </div>
@@ -89,35 +136,32 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-
-                    <form action="news_code.php" method="post" enctype="multipart/form-data">
+                    <form action="news_code.php" method="POST" enctype="multipart/form-data">
                         <div class="modal-body">
                             <div class="form-group">
-                                <label>หัวข้อข่าว</label>
-                                <input type="text" name="head" class="form-control" placeholder="เพิ่ม-หัวข้อข่าวสาร">
+                                <label>หัวข้อข่าวประจำวัน</label>
+                                <textarea rows="2" cols="100" name="head" class="form-control" placeholder="เพิ่ม-หัวข้อข่าว"></textarea>
                             </div>
 
                             <div class="form-group">
                                 <label>รายละเอียดข่าว</label>
-                                <textarea row="10" col="100" type="text" name="detail" class="form-control" placeholder="เพิ่ม-รายละเอียดข่าว"></textarea>
+                                <textarea rows="4" cols="100" name="detail" class="form-control" placeholder="เพิ่ม-รายละเอียดข่าว"></textarea>
                             </div>
 
                             <div class="form-group">
                                 <label>รายละเอียดข่าว: เช่น *.jpg,png</label>
-                                <input type="file" name="hotnew_image" class="form-control" placeholder="เพิ่ม-รายละเอียดข่าว">
+                                <input type="file" name="hotnew_image" class="form-control" placeholder="เพิ่มรูปภาพ">
                             </div>
-
 
                             <div class="form-group">
                                 <label>แนบไฟล์: เช่น *.pdf,doc,xls,ppt,rar</label>
-                                <input type="file" name="hotnew_doc" class="form-control" placeholder="เพิ่ม-แนบไฟล์">
+                                <input type="file" name="hotnew_doc" class="form-control" placeholder="แนบไฟล์">
                             </div>
-
                         </div>
 
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit" name="news_save" class="btn btn-primary">Save changes</button>
+                            <button type="submit" name="news_save" class="btn btn-primary">Save</button>
                         </div>
                     </form>
 

@@ -1,6 +1,6 @@
-<nav class="navbar navbar-expand-lg navbar-dark shadow sticky-top" style="background-color: #406882;">
+<nav class="navbar navbar-expand-lg navbar-dark shadow sticky-top" style="background-color: #008000;">
   <div class="container">
-    <a class="navbar-brand" href="index.php">นายชนันธร</a>
+    <a class="navbar-brand" href="index.php">Chinnawat</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -39,11 +39,11 @@
                 <?php else : ?>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="./login.php">Login</a>
+                        <a class="nav-link" href="login.php">Login</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="./register.php">Register</a>
+                        <a class="nav-link" href="register.php">Register</a>
                     </li>
                 <?php endif; ?>
             </ul>

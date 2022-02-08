@@ -1,6 +1,6 @@
-<nav class="navbar navbar-expand-lg navbar-dark shadow sticky-top" style="background-color: #406882;">
+<nav class="navbar navbar-expand-lg navbar-dark shadow sticky-top" style="background-color: #3a0286;">
   <div class="container">
-    <a class="navbar-brand" href="index.php">ชนันธร</a>
+    <a class="navbar-brand" href="index.php">Chinnawat</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
