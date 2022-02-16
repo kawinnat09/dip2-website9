@@ -8,7 +8,7 @@
     <div class="row justify-content-center mb-3">
         <div class="col-md-12">
             <div class="mx-auto" style="width: 22rem;">
-                <img src="images/services/img2.jpg" class="card-img-top" alt="...">
+                <img src="images/services/thanos2.png" class="card-img-top" alt="...">
             </div>
         </div>
     </div>
@@ -39,7 +39,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <button type="submit" name="login_btn" class="btn btn-success">Login Now</button>
+                            <button type="submit" name="login_btn" class="btn btn-primary">Login Now</button>
                         </div>
 
                     </form>

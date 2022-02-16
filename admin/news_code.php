@@ -37,7 +37,7 @@ if (isset($_POST['news_save'])) {
 
 <?php
 if (isset($_POST['news_update'])) {
-    $id =  $_POST['updating_id'];
+    $id =  $_POST['updateting_id'];
     $head =  $_POST['edit_head'];
     $detail =  $_POST['edit_detail'];
     $namepic =  $_FILES['hotnew_image']['name'];

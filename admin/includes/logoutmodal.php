@@ -24,7 +24,7 @@
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
                     <form action="code.php" method="post">
-                        <button type="submit" name="logout_btn" class="btn btn_danger">Logout</button>
+                        <button type="submit" name="logout_btn" class="btn btn-prmary">Logout</button>
                     </form>
                 </div>
             </div>

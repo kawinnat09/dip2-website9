@@ -9,6 +9,8 @@
 
 <?php include("includes/section.php"); ?>
 
-<?php include("includes/section2.php");?>
+<?php include("includes/section2.php"); ?>
+<?php include('news.php'); ?>
+
 
 <?php include("includes/footer.php"); ?>

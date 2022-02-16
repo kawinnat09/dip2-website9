@@ -11,7 +11,7 @@
             <h5 class="font-weight-bold text-primary">Admin Edit News</h5>
         </div>
         <div class="card-body">
-            <?php
+        <?php
             if (isset($_POST['news_editbtn'])) {
                 $id = $_POST['news_edit_id'];
                 $query = "SELECT * FROM hotnews WHERE id='$id' ";
@@ -19,13 +19,13 @@
                 $row = mysqli_fetch_array($result);
             }
             ?>
-
+        
             <form action="news_code.php" method="post" enctype="multipart/form-data">
-                <input type="hidden" name="updating_id" value="<?php echo $row['id']; ?>">
+                <input type="hidden" name="updateting_id" value="<?php echo $row['id']; ?>">
 
                 <div class="form-group">
                     <label>หัวข้อข่าว</label>
-                    <textarea name="edit_head" class="form-control" cols="30" rows="2"><?php echo $row['head']; ?></textarea>
+                    <textarea name="edit_head" cols="20" rows="2" class="form-control"><?php echo $row['head']; ?></textarea>
                 </div>
 
                 <div class="form-group">
